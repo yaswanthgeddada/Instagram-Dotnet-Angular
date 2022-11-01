@@ -9,12 +9,12 @@ namespace API.Models
     public class Comment
     {
         public int Id { get; set; }
-        public string Cmt { get; set; }
+        public string Cmt { get; set; } = String.Empty;
         public int UserId { get; set; }
         public DateTime CreatedAt { get; set; }
 
         [JsonIgnore]
-        public Post Post { get; set; }
+        public Post? Post { get; set; }
 
     }
 }

@@ -20,7 +20,7 @@ namespace API.Models
         public AppUser? AppUser { get; set; }
         public int AppUserId { get; set; }
 
-        public List<Comment> comments { get; set; }
+        public List<Comment>? comments { get; set; }
 
     }
 }

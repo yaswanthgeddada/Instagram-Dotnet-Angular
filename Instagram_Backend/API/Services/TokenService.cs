@@ -39,7 +39,6 @@ namespace API.Services
 
             var tokenHandler = new JwtSecurityTokenHandler();
 
-
             var token = tokenHandler.CreateToken(tokenDiscriptor);
 
             return tokenHandler.WriteToken(token);

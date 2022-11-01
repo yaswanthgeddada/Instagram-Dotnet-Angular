@@ -42,7 +42,7 @@ namespace API.Repositories.Implementations
 
         public async Task<IEnumerable<UserDto>> getAllUser()
         {
-            var users = await _context.AppUsers.ToListAsync();
+            var users = await _context.AppUsers.Include(p => p.Post).ToListAsync();
 
             var mappedUsers = _mapper.Map<IEnumerable<UserDto>>(users);
 
@@ -52,7 +52,7 @@ namespace API.Repositories.Implementations
 
         public async Task<UserDto> getUserById(int id)
         {
-            var user = await _context.AppUsers.FindAsync(id);
+            var user = await _context.AppUsers.Include(p => p.Post).FirstAsync(u => u.Id == id);
 
 
             var mappedUser = _mapper.Map<UserDto>(user);

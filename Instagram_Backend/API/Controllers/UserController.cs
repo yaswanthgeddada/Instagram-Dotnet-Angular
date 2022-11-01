@@ -1,4 +1,5 @@
-﻿using API.Data;
+﻿using System.IdentityModel.Tokens.Jwt;
+using API.Data;
 using API.Dtos;
 using API.Models;
 using API.Repositories.Interfaces;
@@ -36,6 +37,14 @@ namespace API.Controllers
         [HttpGet("getuserbyid/{id}")]
         public async Task<ActionResult<UserDto>> getuserbyid(int id)
         {
+
+
+            var tokenHandler = new JwtSecurityTokenHandler();
+
+            // var t = tokenHandler.ReadJwtToken()
+            // var u = t.Claims.First(c => c.Type == "nameid").Value;
+
+
             var user = await _userRepository.getUserById(id);
 
             var email = User.FindFirst("UserName")?.Value;

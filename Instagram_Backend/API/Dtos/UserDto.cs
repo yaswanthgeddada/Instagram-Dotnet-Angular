@@ -13,6 +13,8 @@ namespace API.Dtos
         public string EmailAddress { get; set; }
         public string profilePic { get; set; }
         public string bio { get; set; }
+        public List<Post> Post { get; set; }
+
 
     }
 }

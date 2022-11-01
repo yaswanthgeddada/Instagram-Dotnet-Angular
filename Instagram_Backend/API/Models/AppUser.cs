@@ -12,5 +12,7 @@ namespace API.Models
         public byte[] PasswordSalt { get; set; }
         public string? ProfilePic { get; set; } = string.Empty;
         public string? Bio { get; set; } = string.Empty;
+
+        public List<Post> Post { get; set; }
     }
 }

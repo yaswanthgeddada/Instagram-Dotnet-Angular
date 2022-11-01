@@ -10,6 +10,8 @@ namespace API.Profiles
         {
             CreateMap<AppUser, AddUserDto>().ReverseMap();
             CreateMap<AppUser, UserDto>().ReverseMap();
+            CreateMap<Post, PostDto>().ReverseMap();
+
         }
     }
 }

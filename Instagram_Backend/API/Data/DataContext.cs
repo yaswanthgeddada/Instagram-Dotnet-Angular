@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace API.Data
 {
-    public class DataContext:DbContext
+    public class DataContext : DbContext
     {
         public DataContext(DbContextOptions<DataContext> options) : base(options)
         {
@@ -11,5 +11,6 @@ namespace API.Data
         }
 
         public DbSet<AppUser> AppUsers { get; set; }
+        public DbSet<Post> Posts { get; set; }
     }
 }

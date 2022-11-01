@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
@@ -52,7 +53,7 @@ namespace API.Controllers
         {
             if (loginDto == null) return NotFound();
 
-            var user = _context.AppUsers.SingleOrDefault(u => u.UserName == loginDto.username);
+            var user = await _context.AppUsers.SingleOrDefaultAsync(u => u.UserName == loginDto.username);
 
             if (user == null) return BadRequest("UserNotFound");
 

@@ -1,53 +1,70 @@
 ﻿using API.Data;
 using API.Dtos;
 using API.Models;
+using API.Repositories.Interfaces;
 using API.Services;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace API.Controllers
 {
-
+    [Authorize]
     public class UserController : BaseController
     {
-        private readonly DataContext _context;
         private readonly IMapper _mapper;
         private readonly ITokenService _tokenService;
+        private readonly IUserRepository _userRepository;
 
-        public UserController(DataContext context, IMapper mapper, ITokenService tokenService)
+        public UserController(IMapper mapper, ITokenService tokenService, IUserRepository userRepository)
         {
+            _userRepository = userRepository;
             _tokenService = tokenService;
-            _context = context;
             _mapper = mapper;
         }
 
         [HttpGet("getusers")]
-        public async Task<IActionResult> getAllUsers()
+        public async Task<ActionResult<IEnumerable<UserDto>>> getAllUsers()
         {
-            var users = await _context.AppUsers.ToListAsync();
+            var users = await _userRepository.getAllUser();
 
             return Ok(users);
         }
 
-        [HttpGet("getuserbyid/{Id:int}")]
-        public async Task<IActionResult> getAllUsers(int id)
+        [HttpGet("getuserbyid/{id}")]
+        public async Task<ActionResult<UserDto>> getuserbyid(int id)
         {
-            var user = await _context.AppUsers.FindAsync(id);
+            var user = await _userRepository.getUserById(id);
+
+            var email = User.FindFirst("UserName")?.Value;
+
+            if (user == null) return BadRequest($"User not found with id:{id}");
 
             return Ok(user);
         }
 
 
-        [HttpPost("adduser")]
-        public async Task<IActionResult> addUser(AppUser appUser)
+        [HttpPut("updateUser")]
+        public async Task<IActionResult> updateUser([FromQuery] int id, UpdateUserDto updateUserDto)
         {
-            await _context.AppUsers.AddAsync(appUser);
+            var res = await _userRepository.updateUser(id, updateUserDto);
+            var user = await _userRepository.getUserById(id);
 
-            await _context.SaveChangesAsync();
+            if (!res) return BadRequest("Update Failed");
 
-            return Ok(appUser);
+            return Ok(user);
         }
+
+        [HttpDelete("deactiveuser/{id:int}")]
+        public async Task<IActionResult> deleteUser(int id)
+        {
+            var res = await _userRepository.DeleteUser(id);
+            if (res) return Ok("Account deactivated successfully");
+            return Ok("user not found");
+        }
+
+
     }
 }

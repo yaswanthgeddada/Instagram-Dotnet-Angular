@@ -63,3 +63,6 @@ D:\Projects\dotNetprojects\Instagram-Dotnet-Angular\Instagram_Backend\api\obj\De
 D:\Projects\dotNetprojects\Instagram-Dotnet-Angular\Instagram_Backend\API\bin\Debug\net6.0\AutoMapper.dll
 D:\Projects\dotNetprojects\Instagram-Dotnet-Angular\Instagram_Backend\API\bin\Debug\net6.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
 D:\Projects\dotNetprojects\Instagram-Dotnet-Angular\Instagram_Backend\api\bin\Debug\net6.0\Microsoft.IdentityModel.Abstractions.dll
+D:\Projects\dotNetprojects\Instagram-Dotnet-Angular\Instagram_Backend\api\bin\Debug\net6.0\JWT.dll
+D:\Projects\dotNetprojects\Instagram-Dotnet-Angular\Instagram_Backend\api\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+D:\Projects\dotNetprojects\Instagram-Dotnet-Angular\Instagram_Backend\api\bin\Debug\net6.0\Newtonsoft.Json.dll

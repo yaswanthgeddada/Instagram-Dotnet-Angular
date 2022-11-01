@@ -4,11 +4,12 @@ using AutoMapper;
 
 namespace API.Profiles
 {
-    public class UserProfile:Profile
+    public class UserProfile : Profile
     {
         public UserProfile()
         {
             CreateMap<AppUser, AddUserDto>().ReverseMap();
+            CreateMap<AppUser, UserDto>().ReverseMap();
         }
     }
 }

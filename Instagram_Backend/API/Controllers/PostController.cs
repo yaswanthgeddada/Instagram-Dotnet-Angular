@@ -6,11 +6,13 @@ using System.Threading.Tasks;
 using API.Repositories.Interfaces;
 using API.Services;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
 namespace API.Controllers
 {
+    [Authorize]
     public class PostController : BaseController
     {
         private readonly IMapper _mapper;
@@ -29,6 +31,15 @@ namespace API.Controllers
             return Ok(posts);
         }
 
+
+        [HttpGet("getAllUserPosts/{id}")]
+        public async Task<ActionResult<Post>> getAllUserPosts(int id)
+        {
+            var posts = await _postRepository.getAllUserPosts(id);
+
+            return Ok(posts);
+        }
+
         [HttpPost("addpost")]
         public async Task<ActionResult<Post>> AddPost(Post post)
         {
@@ -40,7 +51,10 @@ namespace API.Controllers
         [HttpDelete("deletepost/{postId}")]
         public async Task<IActionResult> DeletePost(int postId)
         {
-            return Ok();
+            var res = await _postRepository.DeletePost(postId);
+            if (!res) return BadRequest("Delete unsuccessfull");
+
+            return Ok("deleted successfully");
         }
 
     }

@@ -10,9 +10,11 @@ namespace API.Models
     {
         public int Id { get; set; }
         public string Cmt { get; set; }
+        public int UserId { get; set; }
         public DateTime CreatedAt { get; set; }
-        public PostComment PostComment { get; set; }
-        public int PostCommentId { get; set; }
+
+        [JsonIgnore]
+        public Post Post { get; set; }
 
     }
 }

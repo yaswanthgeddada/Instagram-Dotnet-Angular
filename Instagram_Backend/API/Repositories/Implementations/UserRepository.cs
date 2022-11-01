@@ -52,7 +52,7 @@ namespace API.Repositories.Implementations
 
         public async Task<UserDto> getUserById(int id)
         {
-            var user = await _context.AppUsers.Include(p => p.Post).FirstAsync(u => u.Id == id);
+            var user = await _context.AppUsers.Include(p => p.Post).ThenInclude(c => c.comments).FirstAsync(u => u.Id == id);
 
 
             var mappedUser = _mapper.Map<UserDto>(user);

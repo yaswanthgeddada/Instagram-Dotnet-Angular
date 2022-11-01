@@ -40,12 +40,12 @@ namespace API.Repositories.Implementations
 
         public async Task<IEnumerable<Post>> getAllPosts()
         {
-            return await _context.Posts.ToListAsync(); ;
+            return await _context.Posts.Include(c => c.comments).ToListAsync(); ;
         }
 
         public async Task<IEnumerable<Post>> getAllUserPosts(int userId)
         {
-            var posts = await _context.Posts.Where(u => u.AppUserId == userId).ToListAsync();
+            var posts = await _context.Posts.Include(c => c.comments).Where(u => u.AppUserId == userId).ToListAsync();
 
             return posts;
         }
@@ -53,7 +53,7 @@ namespace API.Repositories.Implementations
 
         public async Task<Post> getPostbyId(int id)
         {
-            return await _context.Posts.FindAsync(id);
+            return await _context.Posts.Include(c => c.comments).SingleAsync(p => p.Id == id);
         }
     }
 }

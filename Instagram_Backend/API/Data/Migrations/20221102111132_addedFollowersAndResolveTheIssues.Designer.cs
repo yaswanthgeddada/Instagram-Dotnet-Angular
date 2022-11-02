@@ -4,16 +4,18 @@ using API.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace API.Migrations
+namespace API.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20221102111132_addedFollowersAndResolveTheIssues")]
+    partial class addedFollowersAndResolveTheIssues
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -103,6 +105,8 @@ namespace API.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("followerId");
+
                     b.ToTable("Followers");
                 });
 
@@ -161,6 +165,17 @@ namespace API.Migrations
                         .IsRequired();
 
                     b.Navigation("Post");
+                });
+
+            modelBuilder.Entity("API.Models.Follower", b =>
+                {
+                    b.HasOne("API.Models.AppUser", "follower")
+                        .WithMany()
+                        .HasForeignKey("followerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("follower");
                 });
 
             modelBuilder.Entity("API.Models.Like", b =>

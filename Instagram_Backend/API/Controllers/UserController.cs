@@ -81,5 +81,17 @@ namespace API.Controllers
 
             return Unauthorized();
         }
+
+
+        [HttpPut("addOrRemoveFollower")]
+        public async Task<IActionResult> addOrRemoveFollower(FollowerDto followerDto)
+        {
+            var res = await _userRepository.followOrUnfollow(followerDto);
+
+            if (res == "user not found") return BadRequest(res);
+
+            return Ok(res);
+        }
+
     }
 }

@@ -15,5 +15,6 @@ namespace API.Repositories.Interfaces
         Task<bool> deleteUser(int id);
         Task<bool> ForgotPassword(string emailAddress);
         Task<bool> isUserPresent(int userId);
+        Task<string> followOrUnfollow(FollowerDto followerDto);
     }
 }

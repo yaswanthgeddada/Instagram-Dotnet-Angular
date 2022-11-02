@@ -14,6 +14,8 @@ namespace API.Data
         public DbSet<Post> Posts { get; set; } = default!;
         public DbSet<Comment> Comments { get; set; } = default!;
         public DbSet<Like> Likes { get; set; } = default!;
+        public DbSet<Follower> Followers { get; set; } = default!;
+
 
     }
 }

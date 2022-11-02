@@ -23,7 +23,7 @@ namespace API.Repositories.Implementations
 
         }
 
-        public async Task<bool> DeleteUser(int id)
+        public async Task<bool> deleteUser(int id)
         {
             var user = await _context.AppUsers.FindAsync(id);
 
@@ -72,5 +72,12 @@ namespace API.Repositories.Implementations
             await _context.SaveChangesAsync();
             return true;
         }
+
+        public async Task<bool> isUserPresent(int userId)
+        {
+            return await _context.AppUsers.AnyAsync(u => u.Id == userId) ? true : false;
+        }
+
+
     }
 }

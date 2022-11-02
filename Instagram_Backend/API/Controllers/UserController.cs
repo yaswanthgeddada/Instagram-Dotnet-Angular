@@ -70,18 +70,16 @@ namespace API.Controllers
         [HttpDelete("deactiveuser/{id:int}")]
         public async Task<IActionResult> deleteUser(int id)
         {
-            var username = User.FindFirstValue(ClaimTypes.Name);
-            var usr = await _userRepository.getUserById(id);
 
-            if (usr != null && (username == usr.username))
+
+
+            if (await _userRepository.isUserPresent(id) && await _tokenService.isUserTrueUser(id))
             {
-                var res = await _userRepository.DeleteUser(id);
+                var res = await _userRepository.deleteUser(id);
                 if (res) return Ok("Account deactivated successfully");
             }
 
             return Unauthorized();
         }
-
-
     }
 }

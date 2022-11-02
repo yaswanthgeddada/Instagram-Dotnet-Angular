@@ -12,7 +12,8 @@ namespace API.Repositories.Interfaces
         Task<IEnumerable<UserDto>> getAllUser();
         Task<UserDto> getUserById(int id);
         Task<bool> updateUser(int id, UpdateUserDto updateUserDto);
-        Task<bool> DeleteUser(int id);
+        Task<bool> deleteUser(int id);
         Task<bool> ForgotPassword(string emailAddress);
+        Task<bool> isUserPresent(int userId);
     }
 }

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "RIadBPpr0N3XaiGnUITSY8kp9YnWXmYFhXZ1//VDGP73MRYvrpm1OE1LxVa4KIeh0+NQo627mZ1kqtDLW3XyMQ==",
+  "dgSpecHash": "wiHknNLmwnHS5CU+dCYcw8Gk14BKqr4TSH1THGqf+0k0IA/QbHnIcKjFtSoh6nP7PUKfBP2JbOa84wrJ/ps9rA==",
   "success": true,
-  "projectFilePath": "D:\\Projects\\dotNetprojects\\Instagram-Dotnet-Angular\\Instagram_Backend\\api\\API.csproj",
+  "projectFilePath": "D:\\Projects\\dotNetprojects\\Instagram-Dotnet-Angular\\Instagram_Backend\\API\\API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\yaswa\\.nuget\\packages\\automapper\\12.0.0\\automapper.12.0.0.nupkg.sha512",
     "C:\\Users\\yaswa\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.0\\automapper.extensions.microsoft.dependencyinjection.12.0.0.nupkg.sha512",

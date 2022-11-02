@@ -7,8 +7,8 @@ namespace API.Dtos
 {
     public class RegisterResponseDto
     {
-        public string token { get; set; }
-        public string username { get; set; }
+        public string token { get; set; } = String.Empty;
+        public string username { get; set; } = String.Empty;
         public DateTime tokenExpiry { get; set; }
     }
 }

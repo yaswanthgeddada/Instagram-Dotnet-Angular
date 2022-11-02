@@ -1,4 +1,5 @@
 ﻿using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
 using API.Data;
 using API.Dtos;
 using API.Models;
@@ -69,9 +70,16 @@ namespace API.Controllers
         [HttpDelete("deactiveuser/{id:int}")]
         public async Task<IActionResult> deleteUser(int id)
         {
-            var res = await _userRepository.DeleteUser(id);
-            if (res) return Ok("Account deactivated successfully");
-            return Ok("user not found");
+            var username = User.FindFirstValue(ClaimTypes.Name);
+            var usr = await _userRepository.getUserById(id);
+
+            if (usr != null && (username == usr.username))
+            {
+                var res = await _userRepository.DeleteUser(id);
+                if (res) return Ok("Account deactivated successfully");
+            }
+
+            return Unauthorized();
         }
 
 

@@ -25,21 +25,29 @@ namespace API.Services
 
             var claims = new List<Claim>
             {
-                new Claim(JwtRegisteredClaimNames.NameId , user.UserName)
+                new Claim(ClaimTypes.Name , user.UserName)
             };
 
             var creds = new SigningCredentials(_key, SecurityAlgorithms.HmacSha512Signature);
 
-            var tokenDiscriptor = new SecurityTokenDescriptor
-            {
-                Subject = new ClaimsIdentity(claims),
-                Expires = DateTime.Now.AddDays(2),
-                SigningCredentials = creds
-            };
+            // var tokenDiscriptor = new SecurityTokenDescriptor
+            // {
+            //     Subject = claims,
+            //     Expires = DateTime.Now.AddDays(2),
+            //     SigningCredentials = creds
+            // };
+
+
 
             var tokenHandler = new JwtSecurityTokenHandler();
 
-            var token = tokenHandler.CreateToken(tokenDiscriptor);
+            // var token = tokenHandler.CreateToken(tokenDiscriptor);
+
+            var token = new JwtSecurityToken(
+                claims: claims,
+                expires: DateTime.Now.AddDays(1),
+                signingCredentials: creds
+            );
 
             return tokenHandler.WriteToken(token);
         }

@@ -13,8 +13,7 @@ namespace API.Models
         public string? Title { get; set; }
         public string ImageUrl { get; set; } = string.Empty;
 
-        [NotMapped]
-        public List<int> likes { get; set; } = new List<int>();
+        public List<Like> likes { get; set; } = default!;
 
         [JsonIgnore]
         public AppUser? AppUser { get; set; }

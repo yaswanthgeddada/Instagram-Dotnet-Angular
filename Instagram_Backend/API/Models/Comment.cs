@@ -14,7 +14,7 @@ namespace API.Models
         public DateTime CreatedAt { get; set; }
 
         [JsonIgnore]
-        public Post? Post { get; set; }
+        public Post Post { get; set; } = default!;
 
     }
 }

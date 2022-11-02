@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using API.Dtos;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Repositories.Interfaces
@@ -15,7 +16,8 @@ namespace API.Repositories.Interfaces
         Task<IEnumerable<Post>> getAllUserPosts(int id);
 
         Task<Post> getPostbyId(int id);
-
+        Task<string> likeOrDisLikePost(LikeOrDislikePostDto reqDto);
+        Task<bool> isPostPresent(int postId);
 
 
 

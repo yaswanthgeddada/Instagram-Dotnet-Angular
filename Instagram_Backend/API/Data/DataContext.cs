@@ -10,8 +10,10 @@ namespace API.Data
 
         }
 
-        public DbSet<AppUser> AppUsers { get; set; }
-        public DbSet<Post> Posts { get; set; }
-        public DbSet<Comment> Comments { get; set; }
+        public DbSet<AppUser> AppUsers { get; set; } = default!;
+        public DbSet<Post> Posts { get; set; } = default!;
+        public DbSet<Comment> Comments { get; set; } = default!;
+        public DbSet<Like> Likes { get; set; } = default!;
+
     }
 }

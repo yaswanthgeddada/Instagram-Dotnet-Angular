@@ -10,7 +10,7 @@ namespace API.Dtos
         public int PostId { get; set; }
         public string Title { get; set; } = string.Empty;
         public string ImageUrl { get; set; } = string.Empty;
-        public List<int> likes { get; set; } = new List<int>();
+        public List<int> likes { get; set; } = default!;
         public int AppUserId { get; set; }
     }
 }
